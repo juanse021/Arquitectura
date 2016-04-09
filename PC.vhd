@@ -1,19 +1,10 @@
 --------------------------------------------------------------------------------
 --                       Maria Alejandra Gomez Montoya                        --
---                       Juan Sebastian Giraldo Herrera                       --
+--                       Juan Sebastian Herrera Giraldo                       --
 --                       Cristhian Andrés Rivera Osorio                       --
 --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity PC is
     Port ( clk : in  STD_LOGIC;
@@ -28,7 +19,7 @@ begin
 
 	process (clk, reset, PC_in)
 	begin
-		if (reset = '0') then
+		if (reset = '1') then
 			PC_out <= (others => '0');
 		else
 			if(rising_edge(clk)) then
@@ -38,4 +29,3 @@ begin
 end process;
 
 end Behavioral;
-

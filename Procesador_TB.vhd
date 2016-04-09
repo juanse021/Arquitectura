@@ -6,19 +6,18 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
  
-ENTITY PC_TB IS
-END PC_TB;
+ENTITY Procesador_TB IS
+END Procesador_TB;
  
-ARCHITECTURE behavior OF PC_TB IS 
+ARCHITECTURE behavior OF Procesador_TB IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT PC
+    COMPONENT Procesador
     PORT(
          clk : IN  std_logic;
          reset : IN  std_logic;
-         PC_in : IN  std_logic_vector(31 downto 0);
-         PC_out : OUT  std_logic_vector(31 downto 0)
+         salida : OUT  std_logic_vector(31 downto 0)
         );
     END COMPONENT;
     
@@ -26,10 +25,9 @@ ARCHITECTURE behavior OF PC_TB IS
    --Inputs
    signal clk : std_logic := '0';
    signal reset : std_logic := '0';
-   signal PC_in : std_logic_vector(31 downto 0) := (others => '0');
 
  	--Outputs
-   signal PC_out : std_logic_vector(31 downto 0);
+   signal salida : std_logic_vector(31 downto 0);
 
    -- Clock period definitions
    constant clk_period : time := 10 ns;
@@ -37,11 +35,10 @@ ARCHITECTURE behavior OF PC_TB IS
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: PC PORT MAP (
+   uut: Procesador PORT MAP (
           clk => clk,
           reset => reset,
-          PC_in => PC_in,
-          PC_out => PC_out
+          salida => salida
         );
 
    -- Clock process definitions
@@ -55,19 +52,13 @@ BEGIN
  
 
    -- Stimulus process
-	stim_proc: process
+   stim_proc: process
    begin		
       reset <= '1';
-      wait for 100 ns;	
-		reset <= '0'; 
-		PC_in <= x"00000001";       
-		wait for 20 ns;
-		PC_in <= x"0000000A";
-		wait for 20 ns;
-		PC_in <= x"00000010";
-		wait for 20 ns;
+      wait for 20 ns;	
 		reset <= '0'; 
       wait;
+		
    end process;
 
 END;

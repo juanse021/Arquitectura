@@ -6,60 +6,50 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
  
-ENTITY CU_TB IS
-END CU_TB;
+ENTITY IM_TB IS
+END IM_TB;
  
-ARCHITECTURE behavior OF CU_TB IS 
+ARCHITECTURE behavior OF IM_TB IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT CU
+    COMPONENT IM
     PORT(
-         Op : IN  std_logic_vector(1 downto 0);
-         Op3 : IN  std_logic_vector(5 downto 0);
-         CU_out : OUT  std_logic_vector(5 downto 0)
+         reset : IN  std_logic;
+         IM_in : IN  std_logic_vector(31 downto 0);
+         IM_out : OUT  std_logic_vector(31 downto 0)
         );
     END COMPONENT;
     
 
    --Inputs
-   signal Op : std_logic_vector(1 downto 0) := (others => '0');
-   signal Op3 : std_logic_vector(5 downto 0) := (others => '0');
+   signal reset : std_logic := '0';
+   signal IM_in : std_logic_vector(31 downto 0) := (others => '0');
 
  	--Outputs
-   signal CU_out : std_logic_vector(5 downto 0);
+   signal IM_out : std_logic_vector(31 downto 0);
    -- No clocks detected in port list. Replace <clock> below with 
    -- appropriate port name 
  
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: CU PORT MAP (
-          Op => Op,
-          Op3 => Op3,
-          CU_out => CU_out
+   uut: IM PORT MAP (
+          reset => reset,
+          IM_in => IM_in,
+          IM_out => IM_out
         ); 
 
    -- Stimulus process
    stim_proc: process
    begin		
-      op <= "10";
-		op3 <= "000000" ;
-		wait for 100 ns;
-		op3 <= "000100" ;
-		wait for 100 ns; 
-		op3 <= "000001" ;
-		wait for 100 ns;
-		op3 <= "000101" ;
-		wait for 100 ns;
-		op3 <= "000010" ;
-		wait for 100 ns;
-		op3 <= "000110" ;
-		wait for 100 ns;
-		op3 <= "000011" ;
-		wait for 100 ns;
-		op3 <= "000111" ;
-		
-		wait;
+      -- hold reset state for 100 ns.
+		reset <='1';
+		IM_in <= x"00000001";
+      wait for 100 ns;	
+		reset <='0';
+		IM_in <= x"00000002";
+      wait;
    end process;
+
 END;

@@ -5,27 +5,23 @@
 --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
-entity nPC is
-    Port ( clk : in  STD_LOGIC;
-			  reset : in STD_LOGIC;
-           nPC_in : in  STD_LOGIC_VECTOR (31 downto 0);
-           nPC_out : out  STD_LOGIC_VECTOR (31 downto 0));
-end nPC;
+entity suma is
+    Port ( op1 : in  STD_LOGIC_VECTOR (31 downto 0);
+           op2 : in  STD_LOGIC_VECTOR (31 downto 0);
+           suma_out : out  STD_LOGIC_VECTOR (31 downto 0));
+end suma;
 
-architecture Behavioral of nPC is
+architecture Behavioral of suma is
 
 begin
-
-	process (clk, reset, nPC_in)
+	
+	process (op1, op2)
 	begin
-		if (reset = '1') then
-			nPC_out <= (others => '0');
-		else
-			if(rising_edge(clk)) then
-				nPC_out <= nPC_in;
-			end if;
-		end if;
-end process;
+		
+		suma_out <= op1 + op2; 
+	
+	end process;
 
 end Behavioral;

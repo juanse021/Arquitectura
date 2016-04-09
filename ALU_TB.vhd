@@ -1,14 +1,10 @@
 --------------------------------------------------------------------------------
 --                       Maria Alejandra Gomez Montoya                        --
---                       Juan Sebastian Giraldo Herrera                       --
+--                       Juan Sebastian Herrera Giraldo                       --
 --                       Cristhian Andrés Rivera Osorio                       --
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
  
 ENTITY ALU_TB IS
 END ALU_TB;
@@ -57,12 +53,9 @@ BEGIN
 		CRs2 <= x"0000000F";
 		 
       -- insert stimulus here 
-		ALUOp <= "000000";
-		wait for 100 ns;
-	
 		ALUOp <= "000001";
 		wait for 100 ns;
-		
+	
 		ALUOp <= "000010";
 		wait for 100 ns;
 		
@@ -79,6 +72,9 @@ BEGIN
 		wait for 100 ns;
 		
 		ALUOp <= "000111";
+		wait for 100 ns;
+		
+		ALUOp <= "001000";
       wait;
    end process;
 
