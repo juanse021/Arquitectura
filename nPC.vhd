@@ -26,6 +26,7 @@ begin
 				nPC_out <= nPC_in;
 			end if;
 		end if;
+-- testeando
 end process;
 
 end Behavioral;
